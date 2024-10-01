@@ -29,14 +29,18 @@ def main():
         data_client = echantillon_clients.loc[echantillon_clients.index == ID]
         return data_client
 
-    def chargement_model():
-        """Chargement du modèle entraîné sur tous les clients avec target"""
-        mod_pickle = open(
-            "C:/Users/Yann/Documents/Projet7-Implementez_un_modele_de_scoring/mlflow_model/model.pkl",
-            "rb",
-        )
+    import pickle
+
+def chargement_model():
+    """Chargement du modèle entraîné sur tous les clients avec target"""
+    # Chemin vers le modèle dans votre repository local
+    chemin_modele = "models/model.pkl"
+    
+    with open(chemin_modele, "rb") as mod_pickle:
         perfect_model = pickle.load(mod_pickle)
+        
         return perfect_model
+
 
     def prediction_1(client):
         pred = request_prediction(URI, client)
